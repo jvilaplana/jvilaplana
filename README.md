@@ -23,7 +23,7 @@
 </p>
 
 ---
-
+<!--
 ## 🏆 Achievements & Awards
 
 - [Award 1: Description, Year]
@@ -31,14 +31,13 @@
 - [Grant/Fellowship: Description, Year]
 
 ---
-
+-->
 ## 📚 Publications
 
-<!-- PUBLICATIONS:START -->
-<!-- PUBLICATIONS:END -->
+- [Google Scholar](https://scholar.google.com/citations?hl=en&user=KgkltygAAAAJ&view_op=list_works&sortby=pubdate)
 
 ---
-
+<!--
 ## 🧑‍💻 Projects
 
 - [Project Name 1](#): Short description of the project.
@@ -91,7 +90,7 @@
 - [Fun fact 2]
 
 ---
-
+-->
 ## 📫 Let's Connect!
 
 <p align="center">
