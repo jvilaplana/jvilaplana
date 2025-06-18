@@ -1,3 +1,61 @@
+import fetch from 'node-fetch';
+import { load } from 'cheerio';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+async function getSourceLinks(citationUrl, title) {
+  try {
+    console.log(`\nFetching details for: ${title}`);
+    const response = await fetch('https://scholar.google.com' + citationUrl, {
+      headers: {
+        'Accept-Charset': 'UTF-8',
+        'Accept-Language': 'de-DE,de;q=0.9',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    });
+    const html = await response.text();
+    const $ = load(html, { decodeEntities: true });
+    
+    let sourceLink = '';
+
+    $('.gsc_oci_value_ext a').each((i, elem) => {
+      const href = $(elem).attr('href');
+      if (href) {
+        // Prepend Google Scholar base URL if the link is relative
+        const fullHref = href.startsWith('http') ? href : 'https://scholar.google.com' + href;
+        console.log(`Found link: ${fullHref}`);
+        if (fullHref.includes('arxiv.org') || !sourceLink) {
+          sourceLink = fullHref;
+        }
+      }
+    });
+
+    // Also look for alternative sources
+    if (!sourceLink) {
+      $('.gsc_oci_value a').each((i, elem) => {
+        const href = $(elem).attr('href');
+        if (href && !href.includes('google.com/scholar')) {
+          const fullHref = href.startsWith('http') ? href : 'https://scholar.google.com' + href;
+          console.log(`Found alternative link: ${fullHref}`);
+          sourceLink = fullHref;
+          return false; // break each loop
+        }
+      });
+    }
+
+    console.log(`Final source link for "${title}": ${sourceLink}`);
+    return { source: sourceLink };
+  } catch (error) {
+    console.error('Error fetching source links:', error);
+    return { source: '' };
+  }
+}
+
 async function fetchPublications() {
   try {
     const scholarId = process.env.SCHOLAR_ID;
