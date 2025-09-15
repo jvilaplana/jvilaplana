@@ -11,7 +11,6 @@
 - 🏫 **Affiliation:** University of Lleida, Department of Computer Science, Distributed Computing Group
 - 🧑‍🔬 **Research Interests:** Cloud Computing, eHealth
 - 🌍 **Location:** Lleida, Catalonia
-- 🌐 **Website:** https://jvilaplana.github.io/
 
 ---
 
