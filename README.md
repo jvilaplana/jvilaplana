@@ -14,14 +14,6 @@
 
 ---
 
-## 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=jvilaplana&show_icons=true&theme=default" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=jvilaplana&layout=compact&theme=default" alt="Top Languages" />
-</p>
-
----
 <!--
 ## 🏆 Achievements & Awards
 
